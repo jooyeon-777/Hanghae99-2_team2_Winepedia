@@ -1,12 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-from selenium import webdriver
-
-driver = webdriver.Chrome
-
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-data = requests.get('http://www.ssg.com/search.ssg?target=all&query=%EC%99%80%EC%9D%B8&ctgId=6000099422&ctgLv=3&ctgLast=Y&parentCtgId=6000099420',headers=headers)
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0'}
+data = requests.get('http://www.winenara.com/goods/goods_list.php?cateCd=001',headers=headers)
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
