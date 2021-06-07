@@ -26,6 +26,7 @@ def login_proc():
     user_pw = input_data['pw']
 
     if (user_id == admin_id and user_pw == admin_pw):
+        print('admin 로그인 성공')
         return jsonify(
             result="success",
             access_token=create_access_token(identity=user_id,
