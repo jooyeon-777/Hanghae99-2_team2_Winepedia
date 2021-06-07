@@ -1,48 +1,58 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 from flask_jwt_extended import *
+from pymongo import MongoClient
+import datetime
 
+client = MongoClient('localhost', 27017)
+db = client.hanghae
 app = Flask(__name__)
 
-# -- 토큰생성을 위한 시크릿키 등륵 --#
+doc = {'user_id':'admin','user_pw':'admin'}
+db.users.insert_one(doc)
 
-app.config.update(
-    DEBUG=True,
-    JWT_SECRET_KET="HANGHAE2JO"
-)
-
+#JWT
+app.config.update(DEBUG = True, JWT_SECRET_KEY = "HANGHAE")
 jwt = JWTManager(app)
 
-# -- 테스트용 어드민계정 --#
-admin_id = "admin"
-admin_pw = "testkey"
+#쿠키
+app.config['JWT_COOKIE_SECURE'] = False
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_ACCESS_COOKIE_PATH'] = '/'
+app.config['JWT_REFRESH_COOKIE_PATH'] = '/'
+app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 
+#로그인
+@app.route('/login',methods=['POST'])
+def logintest():
+    user_id = request.form['id_input']
+    user_pw = request.form['pw_input']
+    user = db.users.find_one({'user_id':user_id},{'user_pw':user_pw})
+    # 체크용프린트
+    print(user_id,user_pw)
+    if user is None:
+        return jsonify({'login':False})
 
-# -- 로그인 테스트--#
-@app.route("/login", methods=['POST'])
-def login_proc():
-    # 클라이언트 요청값
-    input_data = requests.get_json()
-    user_id = input_data['id']
-    user_pw = input_data['pw']
+    access_token = create_access_token(identity= user_id, expires_delta= False)
+    refresh_token = create_refresh_token(identity=user_id)
 
-    if (user_id == admin_id and user_pw == admin_pw):
-        print('admin 로그인 성공')
-        return jsonify(
-            result="success",
-            access_token=create_access_token(identity=user_id,
-                                             expires_delta=False)
+    resp = jsonify({'login':True})
 
-        )
-    else:
-       return jsonify(
-          result = "땡!"
-       )
+    set_access_cookies(resp, access_token)
+    set_refresh_cookies(resp, refresh_token)
+    #체크용프린트
+    print(access_token,refresh_token)
+    return resp, 200
 
 
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# -- login --#
+@app.route('/login/')
+def login():
+    return render_template('login.html')
 
 
 if __name__ == '__main__':

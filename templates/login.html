@@ -101,7 +101,7 @@
             $.ajax({
                 type: "POST",
                 url: "/login",
-                data: {id: email, pw: password},
+                data: {id_input: email, pw_input: password},
                 success: function (response) {
                     alert(response);
                 }
@@ -125,13 +125,15 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="" class="form-control input_user" value="" placeholder="이메일" id="email">
+                        <input type="text" name="" class="form-control input_user" value="" placeholder="이메일"
+                               id="email">
                     </div>
                     <div class="input-group mb-2">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="" class="form-control input_pass" value="" placeholder="패스워드" id="password">
+                        <input type="password" name="" class="form-control input_pass" value="" placeholder="패스워드"
+                               id="password">
                     </div>
 
                     <div class="d-flex justify-content-center mt-3 login_container">
