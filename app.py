@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_jwt_extended import *
 from pymongo import MongoClient
-import datetime
+
 
 client = MongoClient('localhost', 27017)
 db = client.hanghae
