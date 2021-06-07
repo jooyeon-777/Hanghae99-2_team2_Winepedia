@@ -6,12 +6,16 @@ data = requests.get('http://www.winenara.com/goods/goods_list.php?cateCd=001',he
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
-descriptions = soup.select('#contents > div > div.content > div.goods_list_item > div.goods_list > div > div > ul > li:nth-child(1) > div > div.item_info_cont')
+#contents > div > div.content > div.goods_list_item > div.goods_list > div > div
+#contents > div > div.content > div.goods_list_item > div.goods_list > div > div > ul > li:nth-child(1) > div > div.item_info_cont > div.item_tit_box > a > strong.item_name
+
+
+descriptions = soup.select('#contents > div > div.content > div.goods_list_item > div.goods_list > div > div')
 
 for desc in descriptions:
-        wine_name = desc.select_one('div.item_tit_box > a > strong.item_name')
+        wine_name = desc.select_one('ul > li:nth-child(1) > div > div.item_info_cont > div.item_tit_box > a > strong.item_name')
         wine_type = desc.select_one('div.item_tit_box > a > strong:nth-child(2)')
         wine_country = desc.select_one('div.item_tit_box > a > strong:nth-child(4)')
-        wine_price = desc.select_one('div.item_money_box > strong')
+        wine_price = desc.select_one('div.item_money_box > strong > span')
 
 print(wine_name)
