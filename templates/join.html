@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>로그인</title>
+    <title>회원가입</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -40,7 +40,7 @@
             height: 120px;
             width: 120px;
             top: -75px;
-            border-radius: 50%;
+            border-radius: 0%;
             background: gray;
             padding: 10px;
             text-align: center;
@@ -49,7 +49,7 @@
         .brand_logo {
             height: 100px;
             width: 100px;
-            border-radius: 50%;
+            border-radius: 0%;
             border: 2px solid white;
         }
 
@@ -96,16 +96,10 @@
 
             $.ajax({
                 type: "POST",
-                url: "/api/login",
+                url: "/login",
                 data: {id_input: email, pw_input: password},
                 success: function (response) {
-                    if (response['result'] == 'success') {
-                        $.cookie('mytoken', response['token']);
-                        alert(response['usernm'], '님 어서오세요')
-                        window.location.href = '/'
-                    } else {
-                        alert(response['msg'])
-                    }
+                    alert(response);
                 }
             })
         }
@@ -130,25 +124,35 @@
                         <input type="text" name="" class="form-control input_user" value="" placeholder="이메일"
                                id="email">
                     </div>
-                    <div class="input-group mb-2">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" name="" class="form-control input_user" value="" placeholder="이름"
+                               id="name">
+                    </div>
+                    <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" name="" class="form-control input_pass" value="" placeholder="패스워드"
-                               id="password">
+                               id="password1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" name="" class="form-control input_pass" value="" placeholder="패스워드 확인"
+                               id="password2">
                     </div>
 
                     <div class="d-flex justify-content-center mt-3 login_container">
-                        <button onclick="login()" type="button" name="button" class="btn login_btn">로그인</button>
+                        <button onclick="login()" type="button" name="button" class="btn login_btn">가입하기</button>
                     </div>
                 </form>
             </div>
 
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    계정이 아직 없으신가요? <a href="#" class="ml-2">회원가입</a>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
