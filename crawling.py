@@ -1,15 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
 
-headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-data = requests.get('https://www.genie.co.kr/chart/top200?ditc=D&ymd=20200403&hh=23&rtm=N&pg=1',headers=headers)
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0'}
+data = requests.get('http://www.winenara.com/goods/goods_list.php?cateCd=001',headers=headers)
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
-trs = soup.select('#body-content > div.newest-list > div > table > tbody > tr')
+descriptions = soup.select('#contents > div > div.content > div.goods_list_item > div.goods_list > div > div > ul > li:nth-child(1) > div > div.item_info_cont')
 
-for tr in trs:
-    title = tr.select_one('td.info > a.title.ellipsis').text.strip()
-    rank = tr.select_one('td.number').text[0:2].strip()
-    artist = tr.select_one('td.info > a.artist.ellipsis').text
-    print(rank, title, artist)
+for desc in descriptions:
+        wine_name = desc.select_one('div.item_tit_box > a > strong.item_name')
+        wine_type = desc.select_one('div.item_tit_box > a > strong:nth-child(2)')
+        wine_country = desc.select_one('div.item_tit_box > a > strong:nth-child(4)')
+        wine_price = desc.select_one('div.item_money_box > strong')
+
+print(wine_name)
