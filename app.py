@@ -42,13 +42,14 @@ def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
     user = db.users.find_one({'user_id': user_id})
+    password_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
 
     # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
     # 패스워드 확인
     elif user is not None:
-        if user_pw != user['user_pw']:
+        if password_hash != user['password']:
             return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
         payload = {
             'id': user_id,
