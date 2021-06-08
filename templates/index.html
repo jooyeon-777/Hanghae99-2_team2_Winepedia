@@ -32,6 +32,17 @@
                 url: "/api/session",
                 data: {},
                 success: function (response) {
+<<<<<<< HEAD
+                    let wineList = response['wine_list']
+                    for (let i = 0; i < wineList.length; i++) {
+                        let wine_name = wineList[i]['wine_name']
+                        let wine_type = wineList[i]['wine_type']
+                        let wine_country = wineList[i]['wine_country']
+                        let wine_price = wineList[i]['wine_price']
+                        let wine_img = wineList[i]['wine_img']
+                        let wine_like = wineList[i]['wine_like']
+                        
+=======
                     if (response['result'] == 'fail') {
                         $('#logoutitem').hide()
                     } else {
@@ -40,6 +51,7 @@
                 }
             })
         }
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
 
 
             function showWine() {
@@ -59,21 +71,54 @@
                             let temp_html = `<div class="col-12 col-md-3 ${wine_country} ${wine_type}">
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                                        <h2 class="wine-title">${wine_name} (좋아요: ${wine_like})</h2>
+                                                        <img src="http://www.winenara.com${wine_img}" 
+=======
                                                         <h2 class="wine-title">${wine_name}</h2>
                                                         <img src="http://www.winenara.com${wine_img}"
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
+=======
+                                                        <h2 class="wine-title">${wine_name}</h2>
+                                                        <img src="http://www.winenara.com${wine_img}"
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
                                                             alt="Card image cap">
                                                         <span class="card-text">${wine_type}</span>
                                                         <span class="card-text">${wine_country}</span>
                                                         <span class="card-text">${wine_price}</span>
-                                                        <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                                                        <a onclick="likeWine('${wine_name}')" class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
                                                     </div>
                                                 </div>
                                             </div>`
                             $('.row').append(temp_html)
                         }
                     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+                }
+            });
+        }
+
+        function likeWine(wine_name) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/like',
+                data: { name_give: wine_name },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+=======
                 });
             }
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
+=======
+                });
+            }
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
     </script>
 </head>
 
@@ -105,10 +150,25 @@
     </div>
 </header>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <!-- wine-card -->
+    <div class="contatiner">
+        <div id="card-wrapper">
+            <div class="row justify-content-center">
+                
+            </div>
+=======
+=======
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
 <!-- wine-card -->
 <div class="contatiner">
     <div id="card-wrapper">
         <div class="row justify-content-center">
+<<<<<<< HEAD
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
+=======
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
         </div>
     </div>
 </div>

@@ -5,8 +5,6 @@ from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.winelist
 
-# 코딩 시작
-
 
 headers = [{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0'}]
 baseurl = 'http://www.winenara.com/goods/goods_list.php'
@@ -37,6 +35,7 @@ for i in range(1, 9):
                 'wine_country' : wine_country,
                 'wine_price' : wine_price,
                 'wine_img' : wine_img,
+                'wine_like' : 0
                 }
                 
                 db.winelist1.insert_one(doc)
