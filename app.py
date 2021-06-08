@@ -1,3 +1,5 @@
+import hashlib
+
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from pymongo import MongoClient
 import datetime
@@ -8,6 +10,30 @@ db = client.winelist
 app = Flask(__name__)
 
 SECRET_KEY = 'HANGHAE'
+
+# 회원가입
+@app.route('/join/save', methods=['POST'])
+def sign_up():
+    userid_receive = request.form['userid_give']
+    password_receive = request.form['password_give']
+    username_receive = request.form['username_give']
+    password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    doc = {
+        "userid": userid_receive,
+        "password": password_hash,
+        "username": username_receive,
+    }
+    db.users.insert_one(doc)
+    return jsonify({'result': 'success'})
+
+
+#회원가입시 아이디중복확인
+@app.route('/join/check_dup', methods=['POST'])
+def check_dup():
+    userid_receive = request.form['userid_give']
+    exists = bool(db.users.find_one({"userid": userid_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
 
 
 # 로그인
@@ -48,16 +74,10 @@ def session():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
-
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
-
-# -- 테스트용 --#
-@app.route('/index_copy')
-def indexcopy():
-    return render_template('index_copy.html')
 
 
 # -- login --#
