@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그아웃</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script>
+    $(document).ready(function () {
+        logout()
+    });
+
+    function logout() {
+        $.removeCookie('mytoken', {path: '/'});
+        $.removeCookie('sessionusr', {path: '/'});
+        alert('안녕히가세요')
+        window.location.href = "/login"
+    }
+</script>
+<body>
+
+</body>
+</html>
