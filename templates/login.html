@@ -11,6 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
           integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+
+
 
     <style>
         body,
@@ -101,7 +105,7 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token']);
-                        alert(response['usernm'], '님 어서오세요')
+                        alert(response['usernm']+'님 어서오세요')
                         window.location.href = '/'
                     } else {
                         alert(response['msg'])
@@ -146,7 +150,7 @@
 
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    계정이 아직 없으신가요? <a href="#" class="ml-2">회원가입</a>
+                    계정이 아직 없으신가요? <a href="/join" class="ml-2">회원가입</a>
                 </div>
             </div>
         </div>

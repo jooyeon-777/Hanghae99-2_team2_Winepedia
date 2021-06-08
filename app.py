@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from pymongo import MongoClient
 import datetime
 import jwt
@@ -26,9 +26,10 @@ def logintest():
     #그랩해온 정보가 일치하면 페이로드발급
     payload = {
         'id': user_id,
-        'exp': date.time.datetime.utcnow() + datetime.timedelta(seconds=3600)
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
     }
-    token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+    token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+    print(token)
     return jsonify({'result':'success','token':token,'usernm':user_id})
 
 # -- index --#
@@ -40,6 +41,11 @@ def index():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+# -- join --#
+@app.route('/join')
+def join():
+    return render_template('join.html')
 
 
 if __name__ == '__main__':
