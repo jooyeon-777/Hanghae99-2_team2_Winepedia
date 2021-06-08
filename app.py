@@ -46,9 +46,6 @@ def login():
 def join():
     return render_template('join.html')
 
-# @app.route('/main')
-# def main():
-#     return render_template('main.html')
 
 # -- mywinery --#
 @app.route('/mywinery')
@@ -60,6 +57,16 @@ def mywinery():
 def show_Wines():
     winelist1 = list(db.winelist1.find({}, {'_id': False}).sort('like', -1))
     return jsonify({'wine_list': winelist1})
+
+# likebtn
+@app.route('/api/like', methods=['POST'])
+def like_wine():
+    name_receive = request.form['name_give']
+    target_wine = db.winelist1.find_one({'wine_name': name_receive})
+    current_like = target_wine['wine_like']
+    new_like = current_like + 1
+    db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})
+    return jsonify({'msg': '좋아요완료!'})
 
 
 if __name__ == '__main__':
