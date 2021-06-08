@@ -38,21 +38,27 @@
             })
         }
 
-        function showWine() {
-            $.ajax({
-                type: 'GET',
-                url: '/api/list',
-                data: {},
-                success: function (response) {
-                    let wineList = response['wine_list']
-                    for (let i = 0; i < wineList.length; i++) {
-                        let wine_name = wineList[i]['wine_name']
-                        let wine_type = wineList[i]['wine_type']
-                        let wine_country = wineList[i]['wine_country']
-                        let wine_price = wineList[i]['wine_price']
-                        let wine_img = wineList[i]['wine_img']
+        function logout() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('안녕히가세요')
+            window.location.href = "/login"
+        }
 
-                        let temp_html = `<div class="col-12 col-md-3">
+            function showWine() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/list',
+                    data: {},
+                    success: function (response) {
+                        let wineList = response['wine_list']
+                        for (let i = 0; i < wineList.length; i++) {
+                            let wine_name = wineList[i]['wine_name']
+                            let wine_type = wineList[i]['wine_type']
+                            let wine_country = wineList[i]['wine_country']
+                            let wine_price = wineList[i]['wine_price']
+                            let wine_img = wineList[i]['wine_img']
+
+                            let temp_html = `<div class="col-12 col-md-3">
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
                                                         <h2 class="wine-title">${wine_name}</h2>
@@ -65,11 +71,11 @@
                                                     </div>
                                                 </div>
                                             </div>`
-                        $('.row').append(temp_html)
+                            $('.row').append(temp_html)
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
     </script>
 </head>
 
@@ -85,7 +91,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#!">마이와이너리</a></li>
                 <li class="nav-item" id="loginitem"><a class="nav-link" href="/login">LOGIN</a></li>
-                <li class="nav-item" id="logoutitem"><a class="nav-link" href="/login">LOGOUT</a></li>
+                <li class="nav-item" id="logoutitem"><a class="nav-link" href="javascript:logout()">LOGOUT</a></li>
 
             </ul>
         </div>
