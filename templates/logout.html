@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그아웃</title>
+</head>
+<script>
+    $(document).ready(function () {
+        logout()
+    });
+
+    function logout() {
+        $.removeCookie('mytoken', {path: '/'});
+        $.removeCookie('sessionusr', {path: '/'});
+        alert('안녕히가세요')
+        window.location.href = "/"
+    }</script>
+<body>
+
+</body>
+</html>
