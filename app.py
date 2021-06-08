@@ -63,6 +63,10 @@ def index():
 def login():
     return render_template('login.html')
 
+# -- logout --#
+@app.route('/logout')
+def login():
+    return render_template('logout.html')
 
 # -- join --#
 @app.route('/join')
