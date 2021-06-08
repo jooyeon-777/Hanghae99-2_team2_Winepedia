@@ -41,38 +41,108 @@
             })
         }
             function showWine() {
-                $.ajax({
-                    type: 'GET',
-                    url: '/api/list',
-                    data: {},
-                    success: function (response) {
-                        let wineList = response['wine_list']
-                        for (let i = 0; i < wineList.length; i++) {
-                            let wine_name = wineList[i]['wine_name']
-                            let wine_type = wineList[i]['wine_type']
-                            let wine_country = wineList[i]['wine_country']
-                            let wine_price = wineList[i]['wine_price']
-                            {#와인 이미지불러오기#}
-                            let wine_img = 'static/img/'+wine_name+'.jpg'
+            $.ajax({
+                type: 'GET',
+                url: '/api/list',
+                data: {},
+                success: function (response) {
+                    let wineList = response['wine_list']
+                    for (let i = 0; i < wineList.length; i++) {
+                        let wine_name = wineList[i]['wine_name']
+                        let wine_type = wineList[i]['wine_type']
+                        let wine_country = wineList[i]['wine_country']
+                        let wine_price = wineList[i]['wine_price']
+                        let wine_img = 'static/img/'+wine_name+'.jpg'
+                        let wine_like = wineList[i]['wine_like']
+
 
                             let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country}">
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
-                                                        <h2 class="wine-title">${wine_name}</h2>
+                                                        <h2 class="wine-title">${wine_name} (좋아요: ${wine_like})</h2>
                                                         <img src="${wine_img}"
                                                             alt="Card image cap">
                                                         <span class="card-text">${wine_type}</span>
                                                         <span class="card-text">${wine_country}</span>
                                                         <span class="card-text">${wine_price}</span>
-                                                        <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
-                                                    </div>
+                                                        <a onclick="likeWine('${wine_name}')" class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                                                        <a aria-label="heart" onclick="toggle_like('', 'heart')">
+                                                            <span class="icon is-small"><i class="fa fa-heart" aria-hidden="true"></i></span>&nbsp;<span class="like-num">2.7k</span>
+                                                        </a>
+
+
+
+                                                        </div>
                                                 </div>
                                             </div>`
-                            $('.row').append(temp_html)
-                        }
+                        $('.row').append(temp_html)
                     }
-                });
+                }
+            });
+        }
+
+        function likeWine(wine_name) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/like',
+                data: { name_give: wine_name },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        function deleteStar(name) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/delete',
+                data: { name_give: wine_name },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+        function toggle_like(post_id, type) {  // toggle_like를 클릭하면 post_id를 항상같이 넘겨준다
+            console.log(post_id, type)
+            let $a_like = $(`#${post_id} a[aria-label='heart']`) // 지금 post id를 가지고있고 a라벨이 heart인 태그를 찾는다
+            let $i_like = $a_like.find("i") // a태그 안에있는 i태그를 찾아서
+            if ($i_like.hasClass("fa-heart")) { // 이 i태그가 fa-heart를 가지고있느냐
+                $.ajax({
+                    type: "POST",
+                    url: "/update_like",
+                    data: {
+                        post_id_give: post_id,
+                        type_give: type,
+                        action_give: "unlike"
+                    },
+                    success: function (response) {
+                        console.log("unlike")
+                        $i_like.addClass("fa-heart-o").removeClass("fa-heart")
+                        $a_like.find("span.like-num").text(response["count"])
+                    }
+                })
+            } else { // 이 i태그가 fa-heart를 가지고있지 않다면
+                $.ajax({
+                    type: "POST",
+                    url: "/update_like",
+                    data: {
+                        post_id_give: post_id,
+                        type_give: type,
+                        action_give: "like"
+                    },
+                    success: function (response) {
+                        console.log("like")
+                        $i_like.addClass("fa-heart").removeClass("fa-heart-o")
+                        $a_like.find("span.like-num").text(response["count"])
+                    }
+                })
+
             }
+        }
+
     </script>
 </head>
 <body>
