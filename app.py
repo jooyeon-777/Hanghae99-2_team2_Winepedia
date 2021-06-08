@@ -10,6 +10,9 @@ app = Flask(__name__)
 
 SECRET_KEY = 'HANGHAE'
 
+
+
+
 #로그인
 @app.route('/api/login',methods=['POST'])
 def logintest():
@@ -30,19 +33,36 @@ def logintest():
     print(token)
     return jsonify({'result':'success','token':token,'usernm':user_id})
 
+#세션확인
+@app.route('/api/session', methods=['GET'])
+def session():
+    gettoken = request.cookies.get('mytoken')
 
-<<<<<<< HEAD
-=======
+    try:
+        payload = jwt.decode(gettoken, SECRET_KEY, algorithms=['HS256'])
+
+        userinfo = db.users.find_one({'user_id': payload['id']}, {'_id': 0})
+        return jsonify({'result': 'success', 'user_id': userinfo['user_id']})
+    except jwt.ExpiredSignatureError:
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
+
+
+
+
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
 
->>>>>>> 4ed37cd660c20834cd1fe29fa5f5e6157ca71126
+
 # -- login --#
 @app.route('/login')
 def login():
     return render_template('login.html')
+
 
 # -- join --#
 @app.route('/join')
