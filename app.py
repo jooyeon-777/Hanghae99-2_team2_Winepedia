@@ -50,6 +50,11 @@ def join():
 # def main():
 #     return render_template('main.html')
 
+# -- mywinery --#
+@app.route('/mywinery')
+def mywinery():
+    return render_template('mywinery.html')
+
 # crawling
 @app.route('/api/list', methods=['GET'])
 def show_Wines():
