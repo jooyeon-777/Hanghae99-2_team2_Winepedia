@@ -38,11 +38,7 @@
             })
         }
 
-        function logout() {
-            $.removeCookie('mytoken', {path: '/'});
-            alert('안녕히가세요')
-            window.location.href = "/login"
-        }
+
 
             function showWine() {
                 $.ajax({
@@ -91,7 +87,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#!">마이와이너리</a></li>
                 <li class="nav-item" id="loginitem"><a class="nav-link" href="/login">LOGIN</a></li>
-                <li class="nav-item" id="logoutitem"><a class="nav-link" href="javascript:logout()">LOGOUT</a></li>
+                <li class="nav-item" id="logoutitem"><a class="nav-link" href="/logout">LOGOUT</a></li>
 
             </ul>
         </div>
