@@ -10,14 +10,21 @@ app = Flask(__name__)
 
 SECRET_KEY = 'HANGHAE'
 
+
+
+
 #로그인
 @app.route('/api/login',methods=['POST'])
 def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
-    user = db.users.find_one({'user_id':user_id},{'user_pw':user_pw})
+    user = db.users.find_one({'user_id':user_id})
+    userpw = user['user_pw']
+    if user['user_pw'] != user_pw:
+        return jsonify({'result':'false','msg':'로그인에 실패하였습니다.'})
     # 체크용프린트
     print(user_id,user_pw)
+    print(user)
     #입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result':'false','msg':'로그인에 실패하였습니다.'})
@@ -30,16 +37,40 @@ def logintest():
     print(token)
     return jsonify({'result':'success','token':token,'usernm':user_id})
 
+#세션확인
+@app.route('/api/session', methods=['GET'])
+def session():
+    gettoken = request.cookies.get('mytoken')
+
+    try:
+        payload = jwt.decode(gettoken, SECRET_KEY, algorithms=['HS256'])
+
+        userinfo = db.users.find_one({'user_id': payload['id']}, {'_id': 0})
+        return jsonify({'result': 'success', 'user_id': userinfo['user_id']})
+    except jwt.ExpiredSignatureError:
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
+
+
+
 
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 # -- login --#
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+# -- logout --#
+@app.route('/logout')
+def logout():
+    return render_template('logout.html')
 
 # -- join --#
 @app.route('/join')

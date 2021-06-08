@@ -32,6 +32,7 @@
                 url: "/api/session",
                 data: {},
                 success: function (response) {
+<<<<<<< HEAD
                     let wineList = response['wine_list']
                     for (let i = 0; i < wineList.length; i++) {
                         let wine_name = wineList[i]['wine_name']
@@ -41,6 +42,16 @@
                         let wine_img = wineList[i]['wine_img']
                         let wine_like = wineList[i]['wine_like']
                         
+=======
+                    if (response['result'] == 'fail') {
+                        $('#logoutitem').hide()
+                    } else {
+                        $('#loginitem').hide()
+                    }
+                }
+            })
+        }
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
 
 
             function showWine() {
@@ -61,8 +72,13 @@
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         <h2 class="wine-title">${wine_name} (좋아요: ${wine_like})</h2>
                                                         <img src="http://www.winenara.com${wine_img}" 
+=======
+                                                        <h2 class="wine-title">${wine_name}</h2>
+                                                        <img src="http://www.winenara.com${wine_img}"
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
 =======
                                                         <h2 class="wine-title">${wine_name}</h2>
                                                         <img src="http://www.winenara.com${wine_img}"
@@ -79,6 +95,7 @@
                         }
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 }
             });
         }
@@ -94,6 +111,10 @@
                 }
             });
         }
+=======
+                });
+            }
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
 =======
                 });
             }
@@ -130,6 +151,7 @@
 </header>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- wine-card -->
     <div class="contatiner">
         <div id="card-wrapper">
@@ -137,10 +159,15 @@
                 
             </div>
 =======
+=======
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
 <!-- wine-card -->
 <div class="contatiner">
     <div id="card-wrapper">
         <div class="row justify-content-center">
+<<<<<<< HEAD
+>>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
+=======
 >>>>>>> 648b1359192e5c2e18bfd75dcd03210529d417f8
         </div>
     </div>
