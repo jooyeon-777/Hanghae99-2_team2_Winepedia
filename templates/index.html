@@ -35,22 +35,36 @@
                         let wine_country = wineList[i]['wine_country']
                         let wine_price = wineList[i]['wine_price']
                         let wine_img = wineList[i]['wine_img']
+                        let wine_like = wineList[i]['wine_like']
+                        
 
                         let temp_html = `<div class="col-12 col-md-3">
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
-                                                        <h2 class="wine-title">${wine_name}</h2>
+                                                        <h2 class="wine-title">${wine_name} (좋아요: ${wine_like})</h2>
                                                         <img src="http://www.winenara.com${wine_img}" 
                                                             alt="Card image cap">
                                                         <span class="card-text">${wine_type}</span>
                                                         <span class="card-text">${wine_country}</span>
                                                         <span class="card-text">${wine_price}</span>
-                                                        <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                                                        <a onclick="likeWine('${wine_name}')" class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
                                                     </div>
                                                 </div>
                                             </div>`
                         $('.row').append(temp_html)
                     }
+                }
+            });
+        }
+
+        function likeWine(wine_name) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/like',
+                data: { name_give: wine_name },
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
                 }
             });
         }
@@ -87,6 +101,7 @@
     <div class="contatiner">
         <div id="card-wrapper">
             <div class="row justify-content-center">
+                
             </div>
         </div>
     </div>
