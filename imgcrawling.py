@@ -43,4 +43,5 @@ src = list(db.winelist1.find({'none':0},{'_id':False,'none':False}))
 for sr in src:
         url = sr['wine_img']
         name = sr['wine_name']
-        urllib.request.urlretrieve(url,name+'.jpg')
+        path = './static/img/'+name+'.jpg'
+        urllib.request.urlretrieve(url,path)
