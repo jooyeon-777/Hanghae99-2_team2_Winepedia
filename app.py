@@ -7,37 +7,35 @@ client = MongoClient('localhost', 27017)
 db = client.winelist
 app = Flask(__name__)
 
-
 SECRET_KEY = 'HANGHAE'
 
 
-
-
-#로그인
-@app.route('/api/login',methods=['POST'])
+# 로그인
+@app.route('/api/login', methods=['POST'])
 def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
-    user = db.users.find_one({'user_id':user_id})
+    user = db.users.find_one({'user_id': user_id})
     userpw = user['user_pw']
     if user['user_pw'] != user_pw:
-        return jsonify({'result':'false','msg':'로그인에 실패하였습니다.'})
+        return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
     # 체크용프린트
-    print(user_id,user_pw)
+    print(user_id, user_pw)
     print(user)
-    #입력받은 정보로 그랩해왔는데 일치하는정보가없어?
+    # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
-        return jsonify({'result':'false','msg':'로그인에 실패하였습니다.'})
-    #그랩해온 정보가 일치하면 페이로드발급
+        return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
+    # 그랩해온 정보가 일치하면 페이로드발급
     payload = {
         'id': user_id,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     print(token)
-    return jsonify({'result':'success','token':token,'usernm':user_id})
+    return jsonify({'result': 'success', 'token': token, 'usernm': user_id})
 
-#세션확인
+
+# 세션확인
 @app.route('/api/session', methods=['GET'])
 def session():
     gettoken = request.cookies.get('mytoken')
@@ -53,9 +51,6 @@ def session():
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 
-
-
-
 # -- index --#
 @app.route('/')
 def index():
@@ -67,10 +62,12 @@ def index():
 def login():
     return render_template('login.html')
 
+
 # -- logout --#
 @app.route('/logout')
 def logout():
     return render_template('logout.html')
+
 
 # -- join --#
 @app.route('/join')
@@ -83,11 +80,13 @@ def join():
 def mywinery():
     return render_template('mywinery.html')
 
+
 # crawling
 @app.route('/api/list', methods=['GET'])
 def show_Wines():
     winelist1 = list(db.winelist1.find({}, {'_id': False}).sort('like', -1))
     return jsonify({'wine_list': winelist1})
+
 
 # likebtn
 @app.route('/api/like', methods=['POST'])
