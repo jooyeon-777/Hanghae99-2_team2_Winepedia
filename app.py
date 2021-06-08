@@ -4,10 +4,8 @@ import datetime
 import jwt
 
 client = MongoClient('localhost', 27017)
-db = client.hanghae
+db = client.winelist
 app = Flask(__name__)
-
-
 
 
 SECRET_KEY = 'HANGHAE'
@@ -37,11 +35,6 @@ def logintest():
 def index():
     return render_template('index.html')
 
-# -- index --#
-@app.route('/')
-def index():
-    return render_template('main.html')
-
 # -- login --#
 @app.route('/login')
 def login():
@@ -51,6 +44,16 @@ def login():
 @app.route('/join')
 def join():
     return render_template('join.html')
+
+@app.route('/main')
+def main():
+    return render_template('main.html')
+
+# crawling
+@app.route('/api/list', methods=['GET'])
+def show_Wines():
+    winelist1 = list(db.winelist1.find({}, {'_id': False}).sort('like', -1))
+    return jsonify({'wine_list': winelist1})
 
 
 if __name__ == '__main__':
