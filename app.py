@@ -37,6 +37,11 @@ def logintest():
 def index():
     return render_template('index.html')
 
+# -- index --#
+@app.route('/')
+def index():
+    return render_template('main.html')
+
 # -- login --#
 @app.route('/login')
 def login():
