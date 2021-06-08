@@ -69,9 +69,9 @@ def login():
 def join():
     return render_template('join.html')
 
-@app.route('/main')
-def main():
-    return render_template('main.html')
+# @app.route('/main')
+# def main():
+#     return render_template('main.html')
 
 # -- mywinery --#
 @app.route('/mywinery')
