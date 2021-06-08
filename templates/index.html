@@ -20,10 +20,12 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../static/css/styles.css" rel="stylesheet"/>
     <script>
+        {#페이지로드시 실행#}
         $(document).ready(function () {
             chksession();
             showWine();
         });
+        {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
         function chksession() {
             $.ajax({
                 type: "GET",
@@ -50,6 +52,7 @@
                             let wine_type = wineList[i]['wine_type']
                             let wine_country = wineList[i]['wine_country']
                             let wine_price = wineList[i]['wine_price']
+                            {#와인 이미지불러오기#}
                             let wine_img = 'static/img/'+wine_name+'.jpg'
 
                             let temp_html = `<div class="col-12 col-md-3">
