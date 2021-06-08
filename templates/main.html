@@ -22,7 +22,6 @@
                 data: {},
                 success: function (response) {
                     let wineList = response['wine_list']
-                    console.log(wineList)
                     for (let i = 0; i < wineList.length; i++) {
                         let wine_name = wineList[i]['wine_name']
                         let wine_type = wineList[i]['wine_type']
@@ -30,22 +29,20 @@
                         let wine_price = wineList[i]['wine_price']
                         let wine_img = wineList[i]['wine_img']
 
-                        console.log(wine_name)
-
-                        // let temp_html = `<div class="col-12 col-md-4">
-                        //                     <div class="program-card" style="width: 15rem">
-                        //                         <div class="card-desc">
-                        //                             <h2 class="wine-title">${wine_name}</h2>
-                        //                             <img src="${wine_img}"
-                        //                                 alt="Card image cap">
-                        //                             <span class="card-text">${wine_type}</span>
-                        //                             <span class="card-text">${wine_country}</span>
-                        //                             <span class="card-text">${wine_price}</span>
-                        //                             <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
-                        //                         </div>
-                        //                     </div>
-                        //                 </div>`
-                        // $('#card-wrapper').append(temp_html)
+                        let temp_html = `<div class="col-12 col-md-4">
+                                            <div class="program-card" style="width: 15rem">
+                                                <div class="card-desc">
+                                                    <h2 class="wine-title">${wine_name}</h2>
+                                                    <img src="http://www.winenara.com${wine_img}" 
+                                                        alt="Card image cap">
+                                                    <span class="card-text">${wine_type}</span>
+                                                    <span class="card-text">${wine_country}</span>
+                                                    <span class="card-text">${wine_price}</span>
+                                                    <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>`
+                        $('#card-wrapper').append(temp_html)
 
                     }
                 }

@@ -31,13 +31,10 @@ def logintest():
     return jsonify({'result':'success','token':token,'usernm':user_id})
 
 
-
-
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 # -- login --#
 @app.route('/login')
