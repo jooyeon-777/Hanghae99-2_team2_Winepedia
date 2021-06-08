@@ -23,6 +23,7 @@ for i in range(1, 9):
 
         descriptions = soup.select('#contents > div > div.content > div.goods_list_item > div.goods_list > div > div > ul > li')
 
+
         for desc in descriptions:
                 wine_name = desc.select_one('a > strong.item_name').text
                 wine_type = desc.select_one('a > strong').text
