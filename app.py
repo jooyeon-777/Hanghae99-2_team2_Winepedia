@@ -54,6 +54,11 @@ def session():
 def index():
     return render_template('index.html')
 
+# -- 테스트용 --#
+@app.route('/index_copy')
+def indexcopy():
+    return render_template('index_copy.html')
+
 
 # -- login --#
 @app.route('/login')
