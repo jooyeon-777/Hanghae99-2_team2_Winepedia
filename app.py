@@ -31,14 +31,14 @@ def logintest():
     return jsonify({'result':'success','token':token,'usernm':user_id})
 
 
-<<<<<<< HEAD
-=======
+
+
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
 
->>>>>>> 4ed37cd660c20834cd1fe29fa5f5e6157ca71126
+
 # -- login --#
 @app.route('/login')
 def login():
@@ -52,6 +52,11 @@ def join():
 @app.route('/main')
 def main():
     return render_template('main.html')
+
+# -- mywinery --#
+@app.route('/mywinery')
+def mywinery():
+    return render_template('mywinery.html')
 
 # crawling
 @app.route('/api/list', methods=['GET'])
