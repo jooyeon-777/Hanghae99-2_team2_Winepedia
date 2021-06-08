@@ -82,7 +82,7 @@ def mywinery():
 # crawling
 @app.route('/api/list', methods=['GET'])
 def show_Wines():
-    winelist1 = list(db.winelist1.find({}, {'_id': False}).sort('like', -1))
+    winelist1 = list(db.winelist1.find({}, {'_id': False}).sort('wine_like', -1))
     return jsonify({'wine_list': winelist1})
 
 
@@ -95,6 +95,13 @@ def like_wine():
     new_like = current_like + 1
     db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})
     return jsonify({'msg': '좋아요완료!'})
+
+# deletebtn
+@app.route('/api/delete', methods=['POST'])
+def delete_wine():
+    name_receive = request.form['name_give']
+    db.winelist1.delete_one({'wine_name': name_receive})
+    return jsonify({'msg': '삭제 완료!'})
 
 
 if __name__ == '__main__':
