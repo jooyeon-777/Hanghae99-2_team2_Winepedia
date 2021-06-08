@@ -10,10 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style1.css"/>
-<script
-			  src="https://code.jquery.com/jquery-3.6.0.min.js"
-			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-			  crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
@@ -26,6 +26,7 @@
             showWine();
         });
         {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
+
         function chksession() {
             $.ajax({
                 type: "GET",
@@ -40,7 +41,8 @@
                 }
             })
         }
-            function showWine() {
+
+        function showWine() {
             $.ajax({
                 type: 'GET',
                 url: '/api/list',
@@ -52,11 +54,11 @@
                         let wine_type = wineList[i]['wine_type']
                         let wine_country = wineList[i]['wine_country']
                         let wine_price = wineList[i]['wine_price']
-                        let wine_img = 'static/img/'+wine_name+'.jpg'
+                        let wine_img = 'static/img/' + wine_name + '.jpg'
                         let wine_like = wineList[i]['wine_like']
 
 
-                            let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country}">
+                        let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country}">
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
                                                         <h2 class="wine-title">${wine_name} (좋아요: ${wine_like})</h2>
@@ -85,7 +87,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/api/like',
-                data: { name_give: wine_name },
+                data: {name_give: wine_name},
                 success: function (response) {
                     alert(response['msg']);
                     window.location.reload()
@@ -97,7 +99,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/api/delete',
-                data: { name_give: wine_name },
+                data: {name_give: wine_name},
                 success: function (response) {
                     alert(response['msg']);
                     window.location.reload()
@@ -143,6 +145,164 @@
             }
         }
 
+        function spark() {
+            $('.Sparkling').show()
+            $('.Red').hide()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function redwine() {
+            $('.Sparkling').hide()
+            $('.Red').show()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function whitewine() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.White').show()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function sweet() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.Sweet').show()
+            $('.White').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function rose() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.Rose').show()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Champagne').hide()
+        }
+
+        function cham() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').show()
+        }
+
+        function france() {
+            $('.프랑스').show()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function italy() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').show()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function us() {
+            $('.프랑스').hide()
+            $('.미국').show()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function nz() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').show()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function german() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').show()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function seven() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').show()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function au() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').show()
+            $('.스페인').hide()
+        }
+
+        function spain() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').show()
+        }
+
+        function showall() {
+            $('.프랑스').show()
+            $('.미국').show()
+            $('.이탈리아').show()
+            $('.뉴질랜드').show()
+            $('.독일').show()
+            $('.칠레').show()
+            $('.호주').show()
+            $('.스페인').show()
+            $('.Sparkling').show()
+            $('.Red').show()
+            $('.White').show()
+            $('.Sweet').show()
+            $('.Rose').show()
+            $('.Champagne').show()
+        }
     </script>
 </head>
 <body>
@@ -175,21 +335,26 @@
 <br>
 <div>
     <div>
-<button type="button" class="btn btn-secondary" onclick="spark">스파클링</button>
-<button type="button" class="btn btn-success">스위트</button>
-<button type="button" class="btn btn-danger">레드</button>
-<button type="button" class="btn btn-light">화이트</button>
+        <button type="button" class="btn btn-secondary" onclick="spark()">스파클링</button>
+        <button type="button" class="btn btn-success" onclick="sweet()">스위트</button>
+        <button type="button" class="btn btn-danger" onclick="redwine()">레드</button>
+        <button type="button" class="btn btn-light" onclick="whitewine()">화이트</button>
+        <button type="button" class="btn btn-warning" onclick="rose()">로즈</button>
+        <button type="button" class="btn btn-info" onclick="cham()">샴페인</button>
     </div>
     <div>
-<button type="button" class="btn btn-outline-primary">프랑스</button>
-<button type="button" class="btn btn-outline-secondary">이탈리아</button>
-<button type="button" class="btn btn-outline-success">미국</button>
-<button type="button" class="btn btn-outline-danger">뉴질랜드</button>
-<button type="button" class="btn btn-outline-warning">독일</button>
-<button type="button" class="btn btn-outline-info">칠레</button>
-<button type="button" class="btn btn-outline-light">호주</button>
-<button type="button" class="btn btn-outline-dark">스페인</button>
-        </div>
+        <button type="button" class="btn btn-outline-primary" onclick="france()">프랑스</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="italy()">이탈리아</button>
+        <button type="button" class="btn btn-outline-success" onclick="us()">미국</button>
+        <button type="button" class="btn btn-outline-danger" onclick="nz()">뉴질랜드</button>
+        <button type="button" class="btn btn-outline-warning" onclick="german()">독일</button>
+        <button type="button" class="btn btn-outline-info" onclick="seven()">칠레</button>
+        <button type="button" class="btn btn-outline-light" onclick="au()">호주</button>
+        <button type="button" class="btn btn-outline-dark" onclick="spain()">스페인</button>
+    </div>
+    <div>
+        <button type="button" class="btn btn-dark" onclick="showall()">전체보기</button>
+    </div>
 </div>
 <!-- wine-card -->
 <div class="contatiner">
