@@ -65,7 +65,7 @@ def login():
 
 # -- logout --#
 @app.route('/logout')
-def login():
+def logout():
     return render_template('logout.html')
 
 # -- join --#
