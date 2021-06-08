@@ -32,15 +32,11 @@ def logintest():
     print(token)
     return jsonify({'result':'success','token':token,'usernm':user_id})
 
-# -- index --#
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 # -- index --#
 @app.route('/')
 def index():
-    return render_template('main.html')
+    return render_template('index.html')
 
 # -- login --#
 @app.route('/login')
