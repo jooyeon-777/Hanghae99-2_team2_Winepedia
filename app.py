@@ -16,23 +16,21 @@ def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
     user = db.users.find_one({'user_id': user_id})
-    userpw = user['user_pw']
-    if user['user_pw'] != user_pw:
-        return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
-    # 체크용프린트
-    print(user_id, user_pw)
-    print(user)
+
     # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
     # 그랩해온 정보가 일치하면 페이로드발급
-    payload = {
-        'id': user_id,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
-    }
-    token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-    print(token)
-    return jsonify({'result': 'success', 'token': token, 'usernm': user_id})
+    elif user is not None:
+        if user_pw != user['user_pw']:
+            return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
+        payload = {
+            'id': user_id,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        print(token)
+        return jsonify({'result': 'success', 'token': token, 'usernm': user_id})
 
 
 # 세션확인
