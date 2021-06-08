@@ -1,0 +1,115 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	font-family: "DM Sans", sans-serif;
+	color: #2b292d;
+	letter-spacing: -0.01em;
+}
+
+
+
+/* Reset */
+p {
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+	list-style-type: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+	outline: none;
+	box-shadow: none;
+}
+
+button {
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+button,
+input,
+textarea {
+	font-family: "DM Sans", sans-serif;
+}
+
+/* 여기부터 */
+
+#card-wrapper {
+
+}
+.heartbtn{
+	cursor: pointer;
+	position: relative;
+	top: 40px;
+	left: 95px;
+	z-index: 1;
+	height: 25px;
+	width: 25px;
+	justify-content: center;
+}
+
+.program .row:first-child {
+	margin-bottom: 32px;
+}
+
+.program .row:last-child .col-12 {
+	margin-bottom: 20px;
+}
+
+.program .row:last-child .col-12:last-child {
+	margin-bottom: 0;
+}
+
+
+
+.program-card {
+	/* display: block; */
+	height: 500px;
+	padding: 24px 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.1),
+		inset 0px 1px 0px rgba(255, 255, 255, 0.1);
+	transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+
+
+.program-card:hover,
+.program-card:active {
+	box-shadow: 0px 11px 55px rgba(0, 0, 0, 0.07), 0px 13px 18px rgba(0, 0, 0, 0.15);
+	/* background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 100%); */
+}
+
+
+
+
+
+.program-card img {
+	display: block;
+	width: 80%;
+	margin: 0 auto 16px;
+	object-fit: contain;
+}
