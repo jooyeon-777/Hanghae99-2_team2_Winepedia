@@ -57,19 +57,7 @@ textarea {
 
 /* 여기부터 */
 
-#card-wrapper {
 
-}
-.heartbtn{
-	cursor: pointer;
-	position: relative;
-	top: 40px;
-	left: 95px;
-	z-index: 1;
-	height: 25px;
-	width: 25px;
-	justify-content: center;
-}
 
 .program .row:first-child {
 	margin-bottom: 32px;
@@ -87,7 +75,6 @@ textarea {
 
 .program-card {
 	/* display: block; */
-	height: 500px;
 	padding: 24px 20px;
 	border-radius: 8px;
 	text-align: center;
@@ -104,12 +91,36 @@ textarea {
 }
 
 
-
-
-
 .program-card img {
 	display: block;
 	width: 80%;
 	margin: 0 auto 16px;
 	object-fit: contain;
 }
+
+
+/* wine-card */
+.card-desc{
+	
+	display: flex;
+	flex-direction: column;
+}
+
+.wine-title {
+	
+}
+
+.favbtn {
+	
+}
+.heartbtn{
+	margin-top: 10px;
+	cursor: pointer;
+	top: 40px;
+	left: 95px;
+	z-index: 1;
+	height: 25px;
+	width: 25px;
+	justify-content: center;
+}
+
