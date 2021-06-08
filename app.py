@@ -18,9 +18,13 @@ SECRET_KEY = 'HANGHAE'
 def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
-    user = db.users.find_one({'user_id':user_id},{'user_pw':user_pw})
+    user = db.users.find_one({'user_id':user_id})
+    userpw = user['user_pw']
+    if user['user_pw'] != user_pw:
+        return jsonify({'result':'false','msg':'로그인에 실패하였습니다.'})
     # 체크용프린트
     print(user_id,user_pw)
+    print(user)
     #입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result':'false','msg':'로그인에 실패하였습니다.'})
