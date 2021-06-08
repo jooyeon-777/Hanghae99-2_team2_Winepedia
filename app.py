@@ -20,7 +20,7 @@ def logintest():
     # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
-    # 그랩해온 정보가 일치하면 페이로드발급
+    # 패스워드 확인
     elif user is not None:
         if user_pw != user['user_pw']:
             return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
