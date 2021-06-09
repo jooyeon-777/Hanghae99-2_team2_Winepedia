@@ -52,9 +52,9 @@
         }
     </style>
     <script>
-        function login() {
-            let email = $('#email').val()
-            let password = $('#password').val()
+        function sign_in() {
+            let email = $('#input-username').val()
+            let password = $('#input-password').val()
 
             $.ajax({
                 type: "POST",

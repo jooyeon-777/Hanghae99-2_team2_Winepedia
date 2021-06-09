@@ -41,7 +41,7 @@ def check_dup():
 def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
-    user = db.users.find_one({'user_id': user_id})
+    user = db.users.find_one({'userid': user_id})
     password_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
 
     # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
@@ -51,13 +51,14 @@ def logintest():
     elif user is not None:
         if password_hash != user['password']:
             return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
+        user_name = user['username']
         payload = {
-            'id': user_id,
+            'id': user_name,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
         print(token)
-        return jsonify({'result': 'success', 'token': token, 'usernm': user_id})
+        return jsonify({'result': 'success', 'token': token, 'usernm': user_name})
 
 
 # 세션확인
