@@ -2,14 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>WINEPEDIA</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/css/styles2.css"/>
-    <link rel="stylesheet" href="/static/css/styles2.css"/>
+    <link rel="stylesheet" href="/static/css/navbar.css" />
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <script>
         $(document).ready(function () {
             $('#loginitem').hide()
@@ -33,20 +35,51 @@
         }
     </script>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">WINEPEDIA</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    <div class="navbar">
+        <div class="title-wrapper">
+            <h1 class="title">WINEPEDIA</h1>
+        </div>
+        
+        
+        <ul class="navbar-menu">
+            <li class="navbar-item search">
+                <a href="#" class="nav-link">SEARCH</a>
+                <!-- <img class="arrow-img" src="/static/css/arrow.png" alt=""> -->
+            </li>
+            <li class="navbar-item ">
+                <a href="#" class="nav-link">MYWINERY</a>
+            </li>
+            <li class="navbar-item">
+                <a href="#" class="nav-link">LOGIN</a>
+            </li>
+            <li class="navbar-item">
+                <a href="#" class="nav-link">SIGN UP</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <!-- <MARQUEE scrollamount="15">
+        <h3 class="styling-text">SAVE WATER DRINK WINE</h3>
+    </MARQUEE> -->
+
+
+    <!-- 수정전 navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">WINEPEDIA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/mywinery">마이와이너리</a></li>
-                <li class="nav-item" id="loginitem"><a class="nav-link" href="/login">LOGIN</a></li>
-                <li class="nav-item" id="logoutitem"><a class="nav-link" href="/logout">LOGOUT</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/mywinery">마이와이너리</a></li>
+                    <li class="nav-item" id="loginitem"><a class="nav-link" href="/login">LOGIN</a></li>
+                    <li class="nav-item" id="logoutitem"><a class="nav-link" href="/logout">LOGOUT</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav> -->
 </body>
