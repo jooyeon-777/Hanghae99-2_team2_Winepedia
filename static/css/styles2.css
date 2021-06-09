@@ -141,6 +141,7 @@ body {
 
 .program-card {
 	/* display: block; */
+    margin: auto;
 	padding: 24px 20px;
 	border-radius: 8px;
 	text-align: center;
@@ -3485,7 +3486,7 @@ textarea.form-control-lg {
 
 .btn-outline-light {
   color: #000;
-  border-color: #f8f9fa;
+  border-color: #6c757d;
 }
 .btn-outline-light:hover {
   color: #f8f9fa;
@@ -3514,8 +3515,8 @@ textarea.form-control-lg {
 }
 .btn-outline-dark:hover {
   color: #fff;
-  background-color: #212529;
-  border-color: #212529;
+  background-color: #6f42c1;
+  border-color: #6f42c1;
 }
 .btn-check:focus + .btn-outline-dark, .btn-outline-dark:focus {
   box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0.5);
