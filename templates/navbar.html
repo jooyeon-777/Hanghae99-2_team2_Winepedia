@@ -7,7 +7,16 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>WINEPEDIA</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style1.css"/>
+    <link rel="stylesheet" href="/static/css/styles.css"/>
     <script>
+        $(document).ready(function () {
+            $('#loginitem').hide()
+            $('#logoutitem').hide()
+            chksession();
+        });
+
         function chksession() {
             $.ajax({
                 type: "GET",
@@ -22,12 +31,6 @@
                 }
             })
         }
-
-        $(document).ready(function () {
-            $('#loginitem').hide()
-            $('#logoutitem').hide()
-            chksession();
-        });
     </script>
 </head>
 <body>

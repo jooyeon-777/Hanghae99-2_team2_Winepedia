@@ -3,16 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>마이와이너리</title>
-    <link href="../static/css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style1.css" />
+    <link rel="stylesheet" href="/static/css/styles.css"/>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<!-- Responsive navbar-->
+{% include 'navbar.html' %}
+
+<section class="mywinery-page">
     <div class="container">
-        <a class="navbar-brand" href="/">WINEPEDIA</a>
-
-
+        <div id="card-wrapper">
+            <div class="row justify-content-cente">
+                <div class="col-12">
+                    <div class="myfavwine-desc">
+                        <span>
+                            <strong>000</strong>님이 담아 둔
+                        </span>
+                        <span>
+                            <strong>000</strong>개의
+                            마시고싶은 와인
+                        </span>
+                        <span>
+                            <strong>000</strong>개의
+                            좋아하는 와인
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 ${wine_type} ${wine_country}">
+                    <div class="program-card" style="width: 15rem">
+                        <div class="card-desc">
+                            <h2 class="wine-title">${wine_name}</h2>
+                            <img src="${wine_img}" alt="Card image cap">
+                            <span class="card-text">${wine_type}</span>
+                            <span class="card-text">${wine_country}</span>
+                            <span class="card-text">${wine_price}</span>
+                            <a class="card-text" onclick="likeWine('${wine_name}')" class="favBtn"><i
+                                    class="fas fa-heart heartbtn"></i>${wine_like}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
+</section>
 
 
 </body>
