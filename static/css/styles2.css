@@ -1275,9 +1275,9 @@ progress {
   }
 
   .col-md-3 {
-    flex: 25%;
+    flex: inherit;
     width: 300px;
-    height: 600px;
+    height: 550px;
   }
 
   .col-md-4 {
@@ -6852,6 +6852,7 @@ textarea.form-control-lg {
 }
 
 .justify-content-center {
+  padding: 15px 30px 0px 30px;
   justify-content: center !important;
 }
 
