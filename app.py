@@ -9,6 +9,7 @@ client = MongoClient('localhost', 27017)
 db = client.winelist
 app = Flask(__name__)
 
+
 SECRET_KEY = 'HANGHAE'
 
 
@@ -98,15 +99,12 @@ def logintest():
     user = db.users.find_one({'userid': user_id})
     password_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
 
-    user = db.users.find_one({'user_id': user_id})
-
-
     # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
     # 패스워드 확인
     elif user is not None:
-        if user_pw != user['user_pw']:
+        if password_hash != user['password']:
             return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
         user_name = user['username']
         payload = {
@@ -181,8 +179,25 @@ def like_wine():
     target_wine = db.winelist1.find_one({'wine_name': name_receive})
     current_like = target_wine['wine_like']
     new_like = current_like + 1
+
     db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})
     return jsonify({'msg': '좋아요완료!'})
+
+# 와인 좋아요 받아오기
+@app.route('/api/like', methods=['GET'])
+def my_wine():
+    name_receive = request.form['name_give']
+    target_wine = db.winelist1.find_one({'wine_name': name_receive})
+    current_wine_num_receive = target_wine['wine_num']
+
+    test = db.users.find_one({'userlikelist': {current_wine_num_receive:0}})
+    if test is None:
+        db.users.update_one({'userlikelist': {current_wine_num_receive:0}})
+    else:
+        db.users.update_one({'userlikelist': {current_wine_num_receive:1}})
+
+    return jsonify({"result": "success", 'msg': '즐겨찾기완료!'})
+
 
 
 # deletebtn
@@ -192,16 +207,6 @@ def delete_wine():
     db.winelist1.delete_one({'wine_name': name_receive})
     return jsonify({'msg': '삭제 완료!'})
 
-
-# 좋아요 누르면 mywinary로 이동
-@app.route('/api/save_wine', methods=['POST'])
-def save_wine():
-    # 단어 저장하기
-    wine_receive = request.form['wine_give'] #wine_give라는 이름으로 보내줄게
-    price_receive = request.form['price_give']
-    doc = {"wine": wine_receive, "price": price_receive}
-    db.winelist1.insert_one(doc)
-    return jsonify({'result': 'success', 'msg': 'wine saved'})
 
 
 if __name__ == '__main__':
