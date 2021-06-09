@@ -22,8 +22,10 @@
     <script>
         {#페이지로드시 실행#}
         $(document).ready(function () {
-            chksession();
+            $('#loginitem').hide()
+            $('#logoutitem').hide()
             showWine();
+            chksession();
         });
         {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
 
@@ -34,11 +36,9 @@
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'fail') {
-                        console.log(response)
-                        $('#logoutitem').hide()
+                        $('#loginitem').show()
                     } else {
-                        console.log(response)
-                        $('#loginitem').hide()
+                        $('#logoutitem').show()
                     }
                 }
             })
@@ -336,7 +336,7 @@
 </header>
 <br>
 <div>
-    <div style= "margin : 10px 10px 10px 5px">
+    <div style="margin : 10px 10px 10px 5px">
         <button type="button" class="btn btn-dark" onclick="showall()">와인리스트 전체보기</button>
     </div>
     <div>
