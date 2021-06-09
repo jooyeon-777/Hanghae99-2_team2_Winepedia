@@ -9,7 +9,7 @@
     <!-- mage.html에서 붙여넣은 부분 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style1.css"/>
+{#    <link rel="stylesheet" href="/static/css/style1.css"/>#}
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -18,7 +18,11 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../static/css/styles.css" rel="stylesheet"/>
+    <link href="../static/css/styles2.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+
     <script>
         {#페이지로드시 실행#}
         $(document).ready(function () {
@@ -339,4 +343,36 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+
+
+<!-- 좋아요 누르면 mywinary로 이동하기 -->
+
+<script language="JavaScript" type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    // 읽은 책 db 추가 (POST, 책 id)
+    $(".favBtn").on("click", function () {
+        let favWineId = $(this).closest("div").attr("id");
+
+        $.ajax({
+            url: "/api/save_wine/",
+            type: "POST",
+            data: { wine_give: wine_receive,
+                    price_give: price_receive },
+            success: function (response) {
+                alert(response["msg"])
+            }
+        });
+    });
+
+
+});
+</script>
+
+
+
+
+
+
 </body>
