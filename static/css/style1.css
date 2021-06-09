@@ -124,3 +124,13 @@ textarea {
 	justify-content: center;
 }
 
+/* mywinary */
+.myfavwine-desc {
+	display: flex;
+	justify-content: space-between;
+	background-color: #DCDCDC;
+	padding: 50px;
+	border-radius: 10px;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}	

@@ -109,5 +109,16 @@ def delete_wine():
     return jsonify({'msg': '삭제 완료!'})
 
 
+# 좋아요 누르면 mywinary로 이동
+@app.route('/api/save_wine', methods=['POST'])
+def save_wine():
+    # 단어 저장하기
+    wine_receive = request.form['wine_give'] #wine_give라는 이름으로 보내줄게
+    price_receive = request.form['price_give']
+    doc = {"wine": wine_receive, "price": price_receive}
+    db.winelist1.insert_one(doc)
+    return jsonify({'result': 'success', 'msg': 'wine saved'})
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
