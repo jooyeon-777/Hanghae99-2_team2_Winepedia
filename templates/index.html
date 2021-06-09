@@ -22,27 +22,10 @@
     <script>
         {#페이지로드시 실행#}
         $(document).ready(function () {
-            $('#loginitem').hide()
-            $('#logoutitem').hide()
             showWine();
-            chksession();
         });
         {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
 
-        function chksession() {
-            $.ajax({
-                type: "GET",
-                url: "/api/session",
-                data: {},
-                success: function (response) {
-                    if (response['result'] == 'fail') {
-                        $('#loginitem').show()
-                    } else {
-                        $('#logoutitem').show()
-                    }
-                }
-            })
-        }
 
         function showWine() {
             $.ajax({
