@@ -9,6 +9,7 @@ client = MongoClient('localhost', 27017)
 db = client.winelist
 app = Flask(__name__)
 
+
 SECRET_KEY = 'HANGHAE'
 
 
@@ -177,8 +178,25 @@ def like_wine():
     target_wine = db.winelist1.find_one({'wine_name': name_receive})
     current_like = target_wine['wine_like']
     new_like = current_like + 1
+
     db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})
     return jsonify({'msg': '좋아요완료!'})
+
+# 와인 좋아요 받아오기
+@app.route('/api/like', methods=['GET'])
+def my_wine():
+    name_receive = request.form['name_give']
+    target_wine = db.winelist1.find_one({'wine_name': name_receive})
+    current_wine_num_receive = target_wine['wine_num']
+    
+    test = db.users.find_one({'userlikelist': {current_wine_num_receive:0}})
+    if test is None:
+        db.users.update_one({'userlikelist': {current_wine_num_receive:0}})
+    else:
+        db.users.update_one({'userlikelist': {current_wine_num_receive:1}})
+
+    return jsonify({"result": "success", 'msg': '즐겨찾기완료!'})
+
 
 
 # deletebtn
@@ -187,6 +205,7 @@ def delete_wine():
     name_receive = request.form['name_give']
     db.winelist1.delete_one({'wine_name': name_receive})
     return jsonify({'msg': '삭제 완료!'})
+
 
 
 if __name__ == '__main__':
