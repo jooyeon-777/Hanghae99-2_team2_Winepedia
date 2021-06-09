@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>로그인</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -14,60 +15,54 @@
         integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+=======
+>>>>>>> ffd01e61918400201904d9ecdf12f62632e22ea0
 
+    <title>LOGIN</title>
 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #ffffff;
+        body {
+            background-color: white;
+            min-height: 100vh;
         }
 
-        .user_card {
-            height: 400px;
-            width: 400px;
-            margin-top: auto;
-            margin-bottom: auto;
-            background: lightgray;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding: 10px;
-            border: 2px
+        .section {
+            padding: 1rem 1.5rem;
+            max-width: 750px;
+            margin: auto;
         }
 
-        .brand_logo_container {
-            position: absolute;
-            height: 120px;
-            width: 120px;
-            top: -75px;
-            border-radius: 50%;
-            background: gray;
-            padding: 10px;
-            text-align: center;
+        .title {
+            font-weight: 800;
+            font-size: 5rem;
         }
 
-        .brand_logo {
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            border: 2px solid white;
+        .is-sparta {
+            color: darkred !important;
         }
 
-        .form_container {
-            margin-top: 100px;
+        .button.is-sparta {
+            background-color: darkred;
+            border-color: transparent;
+            color: #fff !important;
         }
 
-        .login_btn {
-            width: 100%;
-            background: #c0392b !important;
-            color: white !important;
+        .button.is-sparta.is-outlined {
+            background-color: transparent;
+            border-color: royalblue;
+            color: royalblue !important;
         }
+<<<<<<< HEAD
 
         .login_btn:focus {
             box-shadow: none !important;
@@ -93,6 +88,10 @@
 
         .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
             background-color: #c0392b !important;
+=======
+        .help {
+            color: gray;
+>>>>>>> ffd01e61918400201904d9ecdf12f62632e22ea0
         }
     </style>
     <script>
@@ -121,6 +120,7 @@
 
 <body>
 
+<<<<<<< HEAD
     <!-- Responsive navbar-->
     {% include 'nav.html' %}
 
@@ -159,11 +159,64 @@
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
                         계정이 아직 없으신가요? <a href="/join" class="ml-2">회원가입</a>
+=======
+<section class="hero is-white">
+    <div class="hero-body has-text-centered" style="padding-bottom:1rem;margin:auto;">
+        <h1 class="title is-sparta">LOGIN</h1>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="box" style="max-width: 480px;margin:auto">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <div class="field has-addons">
+                            <div class="control has-icons-left" style="width:100%">
+                                <input id="input-username" class="input" type="text" placeholder="아이디">
+                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input id="input-password" class="input" type="password" placeholder="비밀번호">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div id="div-sign-in-or-up" class="has-text-centered">
+                        <nav class="level is-mobile">
+                            <button class="level-item button is-sparta" onclick="sign_in()">
+                                로그인
+                            </button>
+
+                        </nav>
+                        <hr>
+                        <h4 class="mb-3">아직 회원이 아니라면</h4>
+                        <nav class="level is-mobile">
+
+                            <button class="level-item button is-sparta is-outlined"
+                                    onclick="location.href='/join'">
+                                회원가입하기
+                            </button>
+                        </nav>
+>>>>>>> ffd01e61918400201904d9ecdf12f62632e22ea0
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+</section>
+>>>>>>> ffd01e61918400201904d9ecdf12f62632e22ea0
 </body>
 
 </html>

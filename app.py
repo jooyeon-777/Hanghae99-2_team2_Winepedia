@@ -1,3 +1,5 @@
+import hashlib
+
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from pymongo import MongoClient
 import datetime
@@ -9,6 +11,30 @@ app = Flask(__name__)
 
 SECRET_KEY = 'HANGHAE'
 
+# 회원가입
+@app.route('/join/save', methods=['POST'])
+def sign_up():
+    userid_receive = request.form['userid_give']
+    password_receive = request.form['password_give']
+    username_receive = request.form['username_give']
+    password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    doc = {
+        "userid": userid_receive,
+        "password": password_hash,
+        "username": username_receive,
+    }
+    db.users.insert_one(doc)
+    return jsonify({'result': 'success'})
+
+
+#회원가입시 아이디중복확인
+@app.route('/join/check_dup', methods=['POST'])
+def check_dup():
+    userid_receive = request.form['userid_give']
+    exists = bool(db.users.find_one({"userid": userid_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
+
 
 # 로그인
 @app.route('/api/login', methods=['POST'])
@@ -16,13 +42,14 @@ def logintest():
     user_id = request.form['id_input']
     user_pw = request.form['pw_input']
     user = db.users.find_one({'user_id': user_id})
+    password_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
 
     # 입력받은 정보로 그랩해왔는데 일치하는정보가없어?
     if user is None:
         return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
     # 패스워드 확인
     elif user is not None:
-        if user_pw != user['user_pw']:
+        if password_hash != user['password']:
             return jsonify({'result': 'false', 'msg': '로그인에 실패하였습니다.'})
         payload = {
             'id': user_id,
@@ -48,16 +75,10 @@ def session():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
-
 # -- index --#
 @app.route('/')
 def index():
     return render_template('index.html')
-
-# -- 테스트용 --#
-@app.route('/index_copy')
-def indexcopy():
-    return render_template('index_copy.html')
 
 
 # -- login --#
