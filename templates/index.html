@@ -34,8 +34,10 @@
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'fail') {
+                        console.log(response)
                         $('#logoutitem').hide()
                     } else {
+                        console.log(response)
                         $('#loginitem').hide()
                     }
                 }
