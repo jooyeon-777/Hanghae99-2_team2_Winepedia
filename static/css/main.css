@@ -1,10 +1,10 @@
-* {
+/* * {
     margin: 0px;
     padding: 0px;
     box-sizing:border-box;
-}
+} */
 
-nav {
+/* nav {
     display : flex;
     justify-content: space-around;
     align-items: center;
@@ -31,7 +31,7 @@ nav {
 }
 
 .nav-links a {
-     color : rgb(226,226,226);
+    color : rgb(226,226,226);
     text-decoration:none;
     letter-spacing: 3px;
     font-weight : bold;
@@ -41,9 +41,9 @@ nav {
 .burger {
     display : none;
     cursor: pointer;
-}
+} */
 
-.burger div{
+/* .burger div{
     width:25px;
     height: 3px;
     background-color: rgb(226,226,226);
@@ -55,8 +55,8 @@ nav {
     .nav-links {
         width: 60%;
     }
-}
-
+} */
+/* 
 @media screen and (max-width :768px) {
     body {
         overflow-x: hidden;
@@ -108,4 +108,4 @@ nav {
 .toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 
-}
+} */
