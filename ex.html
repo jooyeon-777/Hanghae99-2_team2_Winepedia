@@ -1,0 +1,32 @@
+<script>
+    function showWine() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/임의의 api',
+            data: {},
+            success: function (response) {
+                //와인네임만x wine_like도 받아오기 그래서 그값을 winelike_default
+                gettoken = request.cookies.get('mytoken') // 여기는 userid를 확인하기위해 토큰을 받아옴
+                payload = jwt.decode(gettoken, SECRET_KEY, algorithms = ['HS256']) // 토큰을 복호화해서 해당 토큰을 파이썬이 읽을수있게함
+                userinfo = db.users.find_one({'username': payload['id']}, {'_id': 0}) // 복호화된 토큰에서 userid(db상에선 usernickname인 값을 가져옴)
+                let userList = response['usersinfo'] // 여기는 app.py에서 기능을 추가해서 users의 db도 받아오기 (userlike의 목록을 받아와야하니까)
+                user = db.users.find_one({'username': userinfo) // 여기는 1234가저장됨(유저이름)
+                userlikelist = user['userlikelist']
+                for (let m = 0; m < userlikelist.length; m++){
+                    let wine_like = userlikelist[m]
+                    if wine_like == 0{ // 해당유저의 와인좋아요가 0이면
+                    db.users.update_one({'username':userinfo},{'$set':'userlikelist':{m:1}})// 이유저의 userlikelist에서 해당하는 와인의 값을 1로바꿈
+                        db.winelist1.update_one({'winenum':m},{'$set':'wine_like':winelike_default + 1})
+                    }
+                    if wine_like == 1{ //해당유저가 이미 해당와인을 좋아하고있었음
+                        db.users.update_one({'username':userinfo},{'$set':'userlikelist':{m:0}}) //이유저의 userlike에서 해당 와인좋아요를 0으로바꿈
+                        db.winelist1.update_one({'winenum':m},{'$set':'wine_like':winelike_default - 1})
+                }
+
+                }
+
+            }
+        });
+    }
+
+</script>
