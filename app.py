@@ -104,6 +104,10 @@ def join():
 def mywinery():
     return render_template('mywinery.html')
 
+# -- navbar --#    
+@app.route('/navbar')
+def navbar():
+    return render_template('navbar.html')
 
 # crawling
 @app.route('/api/list', methods=['GET'])
