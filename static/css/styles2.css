@@ -153,7 +153,7 @@ body {
 .wine-title{
 	height: 100px;
 	width: 200px;
-   font-size: 20px;
+   font-size: 18px;
 }
 
 .program-card:hover,
@@ -181,9 +181,7 @@ body {
 	flex-direction: column;
 }
 
-.wine-title {
 
-}
 
 .favbtn {
 
