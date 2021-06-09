@@ -69,7 +69,7 @@ def session():
     try:
         payload = jwt.decode(gettoken, SECRET_KEY, algorithms=['HS256'])
         userinfo = db.users.find_one({'username': payload['id']}, {'_id': 0})
-        return jsonify({'result': 'success', 'user_id': userinfo['user_id']})
+        return jsonify({'result': 'success', 'user_id': userinfo['username']})
     except jwt.ExpiredSignatureError:
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
