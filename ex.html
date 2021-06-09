@@ -23,37 +23,6 @@
                         db.winelist1.update_one({'winenum':m},{'$set':'wine_like':winelike_default - 1})
                 }
 
-                let wineList = response['wine_list'] // 여기는 winelist->winelist1의 db를 받아왔습니다
-
-                for (let i = 0; i < wineList.length; i++) {
-                    let wine_name = wineList[i]['wine_name']
-                    let wine_type = wineList[i]['wine_type']
-                    let wine_country = wineList[i]['wine_country']
-                    let wine_price = wineList[i]['wine_price']
-                    let wine_img = 'static/img/' + wine_name + '.jpg'
-                    let wine_like = wineList[i]['wine_like']
-
-
-                    let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country}">
-                                                <div class="program-card" style="width: 15rem">
-                                                    <div class="card-desc">
-                                                        <h4 class="wine-title">${wine_name} (좋아요: ${wine_like})</h4>
-                                                        <img src="${wine_img}"
-                                                            alt="Card image cap">
-                                                        <span class="card-text">${wine_type}</span>
-                                                        <span class="card-text">${wine_country}</span>
-                                                        <span class="card-text">${wine_price}</span>
-                                                        <a onclick="likeWine('${wine_name}')" class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
-                                                        <a aria-label="heart" onclick="toggle_like('', 'heart')">
-                                                            <span class="icon is-small"><i class="fa fa-heart" aria-hidden="true"></i></span>&nbsp;<span class="like-num">2.7k</span>
-                                                        </a>
-
-
-
-                                                        </div>
-                                                </div>
-                                            </div>`
-                    $('.row').append(temp_html)
                 }
 
             }
