@@ -49,11 +49,30 @@
             border-color: royalblue;
             color: royalblue !important;
         }
+
         .help {
             color: gray;
         }
     </style>
     <script>
+        $(document).ready(function () {
+            chkstatus();
+        });
+
+        function chkstatus() {
+            $.ajax({
+                type: "GET",
+                url: "/api/session",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert('이미 로그인한 상태입니다')
+                        window.location.href = '/'
+                    }
+                }
+            })
+        }
+
         function sign_in() {
             let email = $('#input-username').val()
             let password = $('#input-password').val()
