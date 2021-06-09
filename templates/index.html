@@ -19,11 +19,38 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../static/css/styles.css" rel="stylesheet"/>
+    <style>
+        a#MOVE_TOP_BTN {
+            position: fixed;
+            right: 2%;
+            bottom: 50px;
+            display: none;
+            z-index: 999;
+        }
+    </style>
+
     <script>
-        {#페이지로드시 실행#}
-        $(document).ready(function () {
-            showWine();
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 500) {
+                    $('#MOVE_TOP_BTN').fadeIn();
+                } else {
+                    $('#MOVE_TOP_BTN').fadeOut();
+                }
+            });
+
+            $("#MOVE_TOP_BTN").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
         });
+
+            {#페이지로드시 실행#}
+            $(document).ready(function () {
+                showWine();
+            });
         {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
 
 
@@ -328,6 +355,9 @@
         <button type="button" class="btn btn-outline-dark" onclick="spain()">스페인</button>
     </div>
 </div>
+
+<a id="MOVE_TOP_BTN" href="#"><img src="static/img/top.png"></a>
+
 <!-- wine-card -->
 <div class="contatiner">
     <div id="card-wrapper">

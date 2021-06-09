@@ -9,7 +9,6 @@ client = MongoClient('localhost', 27017)
 db = client.winelist
 app = Flask(__name__)
 
-
 SECRET_KEY = 'HANGHAE'
 
 
@@ -24,59 +23,57 @@ def sign_up():
         "userid": userid_receive,
         "password": password_hash,
         "username": username_receive,
-        "userlikelist": {
-            "0": 0,
-            "1": 0,
-            "2": 0,
-            "3": 0,
-            "4": 0,
-            "5": 0,
-            "6": 0,
-            "7": 0,
-            "8": 0,
-            "9": 0,
-            "10": 0,
-            "11": 0,
-            "12": 0,
-            "13": 0,
-            "14": 0,
-            "15": 0,
-            "16": 0,
-            "17": 0,
-            "18": 0,
-            "19": 0,
-            "20": 0,
-            "21": 0,
-            "22": 0,
-            "23": 0,
-            "24": 0,
-            "25": 0,
-            "26": 0,
-            "27": 0,
-            "28": 0,
-            "29": 0,
-            "30": 0,
-            "31": 0,
-            "32": 0,
-            "33": 0,
-            "34": 0,
-            "35": 0,
-            "36": 0,
-            "37": 0,
-            "38": 0,
-            "39": 0,
-            "40": 0,
-            "41": 0,
-            "42": 0,
-            "43": 0,
-            "44": 0,
-            "45": 0,
-            "46": 0,
-            "47": 0,
-            "48": 0,
-            "49": 0,
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": 0,
+        "29": 0,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 0,
+        "34": 0,
+        "35": 0,
+        "36": 0,
+        "37": 0,
+        "38": 0,
+        "39": 0,
+        "40": 0,
+        "41": 0,
+        "42": 0,
+        "43": 0,
+        "44": 0,
+        "45": 0,
+        "46": 0,
+        "47": 0,
+        "48": 0,
+        "49": 0,
 
-        }
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
@@ -159,7 +156,7 @@ def join():
 def mywinery():
     return render_template('mywinery.html')
 
-# -- navbar --#    
+# -- navbar --#
 @app.route('/navbar')
 def navbar():
     return render_template('navbar.html')
@@ -182,13 +179,14 @@ def like_wine():
     db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})
     return jsonify({'msg': '좋아요완료!'})
 
+
 # 와인 좋아요 받아오기
 @app.route('/api/like', methods=['GET'])
 def my_wine():
     name_receive = request.form['name_give']
     target_wine = db.winelist1.find_one({'wine_name': name_receive})
     current_wine_num_receive = target_wine['wine_num']
-    
+
     test = db.users.find_one({'userlikelist': {current_wine_num_receive:0}})
     if test is None:
         db.users.update_one({'userlikelist': {current_wine_num_receive:0}})
