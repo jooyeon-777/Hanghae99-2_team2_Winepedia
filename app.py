@@ -156,7 +156,7 @@ def join():
 # -- mywinery --#
 @app.route('/mywinery')
 def mywinery():
-    return render_template('mywinery.html')
+    return render_template('winery.html')
 
 
 # -- navbar --#
