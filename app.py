@@ -174,7 +174,15 @@ def show_favWines():
     userinfo = db.users.find_one({'username': payload['id']}, {'_id': 0})[
         'username']  # 토큰에서 id값(유저닉네임)을 가져온뒤 userinfo변수에 저장
     # user변수에 해당유저좋아요테이블저장
-    # 필터값에 변수가 안들어가서...노가다
+    # 필터값에 변수가 안들어가서...노가다 나중에
+    # userarr = []
+    # testarr = []
+    # for i in range(0,50):
+    #     userarr.append('db.users.find_one({\'username\': userinfo}, {\'_id\': False, '+str(i)+': True})['+str(i)+']')
+
+        # testarr.append(['user{}'.format(i)])
+
+
     user0 = db.users.find_one({'username': userinfo}, {'_id': False, '0': True})['0']
     user1 = db.users.find_one({'username': userinfo}, {'_id': False, '1': True})['1']
     user2 = db.users.find_one({'username': userinfo}, {'_id': False, '2': True})['2']
@@ -226,6 +234,9 @@ def show_favWines():
     user48 = db.users.find_one({'username': userinfo}, {'_id': False, '48': True})['48']
     user49 = db.users.find_one({'username': userinfo}, {'_id': False, '49': True})['49']
     booleanarr = []
+    # for i in range(0,50):
+    #     booleanarr.append('user{}'.format(i))
+    #     print(booleanarr[i])
     booleanarr.append(user0)
     booleanarr.append(user1)
     booleanarr.append(user2)
