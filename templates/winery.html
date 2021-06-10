@@ -76,23 +76,19 @@
                         let wine_img = 'static/img/' + wine_name + '.jpg'
                         let wine_num = wineList[i]['wine_num']
                         let wine_like = wineList[i]['wine_like']
-                        let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country} ${likes}">
+                        let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country}">
                                                 <div class="program-card" style="width: 15rem">
                                                     <div class="card-desc">
-                                                        <h4 class="wine-title">${wine_name}<p> (좋아요: ${wine_like})</h4>
+                                                        <h4 class="wine-title">${wine_name}<p></h4>
                                                         <img src="${wine_img}"
                                                             alt="Card image cap">
                                                         <span class="card-text">${wine_type}</span>
                                                         <span class="card-text">${wine_country}</span>
                                                         <span class="card-text">${wine_price}</span>
-                                                        <a onclick="likeWine('${wine_name}','${wine_num}')" class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
-                                                        <a aria-label="heart" onclick="toggle_like('', 'heart')">
-                                                            <span class="icon is-small"><i class="fa fa-heart" aria-hidden="true"></i></span>&nbsp;<span class="like-num">2.7k</span>
-                                                        </a>
-
-
-
+                                                        <div class="likebtn-box">
+                                                        <a onclick="likeWine('${wine_name}','${wine_num}')" ><i class="fas fa-heart heartbtn"></i></a><span class="favbtn">${wine_like}</span>
                                                         </div>
+                                                    </div>
                                                 </div>
                                             </div>`
                         if (likes == true){
@@ -285,38 +281,51 @@
 {% include 'navbar.html' %}
 
 <!-- Header - set the background image for the header in the line below-->
-<header class="py-5 bg-image-full"
-        style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
-    <div class="text-center my-5">
-        <img class="img-fluid rounded-circle mb-4" src="../static/wineglass.jpg"
-             alt="..."/>
-        <h2 class="text-white fs-3 fw-bolder">SAVE WATER, DRINK WINE</h2>
-    </div>
-</header>
-<br>
-<div>
-    <div style="margin : 10px 10px 10px 5px">
-        <button type="button" class="btn btn-dark" onclick="showall()">와인리스트 전체보기</button>
+    <header class="py-5 bg-image-full">
+        <div class="text-center my-5">
+            <!-- <h2 class="text-white fs-3 fw-bolder">
+                <marquee behavior="alternate" scollamount="100">SAVE WATER, DRINK WINE</marquee>
+            </h2> -->
+        </div>
+    </header>
+
+
+    <div>
+        <div style="margin : 10px 10px 10px 5px">
+            <!-- <button type="button" class="btn btn-dark" onclick="showall()">와인리스트 전체보기</button> -->
+        </div>
+        <div>
+            <h5 class="h5">WINE TYPE</h5>
+
+            <div class="btn-edit btn-all">
+                <button type="button" class="btn btn-dark" onclick="showall()">전체보기</button>
+                <button type="button" class="btn btn-secondary btna" onclick="spark()">스파클링</button>
+                <button type="button" class="btn btn-success btna" onclick="sweet()">스위트</button>
+                <button type="button" class="btn btn-danger btna" onclick="redwine()">레드</button>
+                <button type="button" class="btn btn-light btna" onclick="whitewine()">화이트</button>
+                <button type="button" class="btn btn-warning btna" onclick="rose()">로즈</button>
+                <button type="button" class="btn btn-info btna" onclick="cham()">샴페인</button>
+            </div>
+        </div>
     </div>
     <div>
-        <button type="button" class="btn btn-secondary btna" onclick="spark()">스파클링</button>
-        <button type="button" class="btn btn-success btna" onclick="sweet()">스위트</button>
-        <button type="button" class="btn btn-danger btna" onclick="redwine()">레드</button>
-        <button type="button" class="btn btn-light btna" onclick="whitewine()">화이트</button>
-        <button type="button" class="btn btn-warning btna" onclick="rose()">로즈</button>
-        <button type="button" class="btn btn-info btna" onclick="cham()">샴페인</button>
+        <h5 class="h5">COUNTRY</h5>
+        <div class="btn-edit btn-all">
+
+            <button type="button" class="btn btn-outline-primary btna" onclick="france()">프랑스</button>
+            <button type="button" class="btn btn-outline-secondary btna" onclick="italy()">이탈리아</button>
+            <button type="button" class="btn btn-outline-success btna" onclick="us()">미국</button>
+            <button type="button" class="btn btn-outline-danger btna" onclick="nz()">뉴질랜드</button>
+            <button type="button" class="btn btn-outline-warning btna" onclick="german()">독일</button>
+            <button type="button" class="btn btn-outline-info btna" onclick="seven()">칠레</button>
+            <button type="button" class="btn btn-outline-light btna" onclick="au()">호주</button>
+            <button type="button" class="btn btn-outline-dark btna" onclick="spain()">스페인</button>
+
+        </div>
     </div>
-    <div>
-        <button type="button" class="btn btn-outline-primary btna" onclick="france()">프랑스</button>
-        <button type="button" class="btn btn-outline-secondary btna" onclick="italy()">이탈리아</button>
-        <button type="button" class="btn btn-outline-success btna" onclick="us()">미국</button>
-        <button type="button" class="btn btn-outline-danger btna" onclick="nz()">뉴질랜드</button>
-        <button type="button" class="btn btn-outline-warning btna" onclick="german()">독일</button>
-        <button type="button" class="btn btn-outline-info btna" onclick="seven()">칠레</button>
-        <button type="button" class="btn btn-outline-light btna" onclick="au()">호주</button>
-        <button type="button" class="btn btn-outline-dark btna" onclick="spain()">스페인</button>
+
+
     </div>
-</div>
 
 <a id="MOVE_TOP_BTN" href="#"><img src="static/img/top.png"></a>
 
