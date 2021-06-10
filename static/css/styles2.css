@@ -11,7 +11,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-  --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
@@ -143,13 +142,12 @@ body {
 	/* display: block; */
     margin: auto;
 	padding: 24px 20px;
-	border-radius: 8px;
+	border-radius: 6px;
 	text-align: -webkit-left;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.1),
-		inset 0px 1px 0px rgba(255, 255, 255, 0.1);
-	transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 	width: 300px;
-	height: 500px;
+	height: 450px;
+  border: 1px solid black;
+  margin-top: 50px;
 }
 .wine-title{
 	height: 100px;
@@ -161,6 +159,10 @@ body {
 .program-card:active {
 	box-shadow: 0px 11px 55px rgba(0, 0, 0, 0.07), 0px 13px 18px rgba(0, 0, 0, 0.15);
 	/* background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 100%); */
+  /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.1),
+		inset 0px 1px 0px rgba(255, 255, 255, 0.1); */
+	transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+  cursor: pointer;
 }
 
 
@@ -171,9 +173,9 @@ body {
 	object-fit: contain;
 }
 
-.btna{
+/* .btna{
   margin: 10px 10px 10px 10px;
-}
+} */
 
 /* wine-card */
 .card-desc{
@@ -182,13 +184,8 @@ body {
 	flex-direction: column;
 }
 
-
-
-.favbtn {
-
-}
 .heartbtn{
-	margin-top: 10px;
+	
 	cursor: pointer;
 	top: 40px;
 	left: 95px;
@@ -209,6 +206,18 @@ body {
 	margin-top: 50px;
 }
 
+.likebtn-box {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.favbtn {
+  line-height : -1.5;
+  margin-left: 5px;
+}
+
 
 /*여기까지*/
 
@@ -216,25 +225,32 @@ body {
 
 
 
-hr {
+/* hr {
   margin: 1rem 0;
   color: inherit;
   background-color: currentColor;
   border: 0;
   opacity: 0.25;
-}
+} */
 
-hr:not([size]) {
+/* hr:not([size]) {
   height: 1px;
+} */
+.h5 {
+  margin-left: 30px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  
 }
-.h5{margin-left: 10px;}
 
-h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+/* h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-}
+} */
 
 h1, .h1 {
   font-size: calc(1.375rem + 1.5vw);
@@ -273,7 +289,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
 }
 
 h6, .h6 {
@@ -504,7 +520,7 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  -webkit-appearance: button;
+  /* -webkit-appearance: button; */
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -3058,39 +3074,20 @@ textarea.form-control-lg {
   z-index: 3;
 } */
 
-.btn {
-  display: inline-block;
-  width: 15%;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
   }
 }
+
+/* .btn-check:focus + .btn, .btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+} */
 .btn:hover {
   color: #212529;
 }
-.btn-check:focus + .btn, .btn:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
+
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
   pointer-events: none;
   opacity: 0.65;
@@ -3126,15 +3123,7 @@ textarea.form-control-lg {
   border-color: #0d6efd;
 } */
 
-.btn-secondary {
-  color: #000;
-  background-color: #d3d3d3;
-}
-.btn-secondary:hover {
-  color: #fff;
-  background-color: #5c636a;
-  border-color: #565e64;
-}
+
 /* .btn-check:focus + .btn-secondary, .btn-secondary:focus {
   color: #fff;
   background-color: #5c636a;
@@ -3149,6 +3138,17 @@ textarea.form-control-lg {
 .btn-check:checked + .btn-secondary:focus, .btn-check:active + .btn-secondary:focus, .btn-secondary:active:focus, .btn-secondary.active:focus, .show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
 } */
+.btn-secondary {
+  color: #000;
+  background-color: #d3d3d3;
+}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #5c636a;
+  border-color: #565e64;
+  border-right: 1px solid black;
+}
+
 .btn-secondary:disabled, .btn-secondary.disabled {
   color: #fff;
   background-color: #6c757d;
@@ -3163,6 +3163,7 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #157347;
   border-color: #146c43;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-success, .btn-success:focus {
   color: #fff;
@@ -3220,7 +3221,7 @@ textarea.form-control-lg {
 .btn-warning:hover {
   color: #000;
   background-color: #ffca2c;
-  border-color: #ffc720;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-warning, .btn-warning:focus {
   color: #000;
@@ -3250,6 +3251,7 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #bb2d3b;
   border-color: #b02a37;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-danger, .btn-danger:focus {
   color: #fff;
@@ -3278,7 +3280,7 @@ textarea.form-control-lg {
 .btn-light:hover {
   color: #000;
   background-color: #f9fafb;
-  border-color: #f9fafb;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-light, .btn-light:focus {
   color: #000;
@@ -3363,6 +3365,7 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-outline-secondary, .btn-outline-secondary:focus {
   box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5);
@@ -3388,6 +3391,7 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #198754;
   border-color: #198754;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-outline-success, .btn-outline-success:focus {
   box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.5);
@@ -3413,6 +3417,7 @@ textarea.form-control-lg {
   color: #000;
   background-color: #0dcaf0;
   border-color: #0dcaf0;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-outline-info, .btn-outline-info:focus {
   box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.5);
@@ -3438,6 +3443,7 @@ textarea.form-control-lg {
   color: #000;
   background-color: #ffc107;
   border-color: #ffc107;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-outline-warning, .btn-outline-warning:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.5);
@@ -3463,6 +3469,7 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
+  border-right: 1px solid black;
 }
 /* .btn-check:focus + .btn-outline-danger, .btn-outline-danger:focus {
   box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5);
@@ -6176,7 +6183,7 @@ textarea.form-control-lg {
     transition: none;
   }
 }
-
+/* 
 .offcanvas-header {
   display: flex;
   align-items: center;
@@ -6186,7 +6193,7 @@ textarea.form-control-lg {
 .offcanvas-header .btn-close {
   padding: 0.5rem 0.5rem;
   margin: -0.5rem -0.5rem -0.5rem auto;
-}
+} */
 
 .offcanvas-title {
   margin-bottom: 0;
@@ -8315,7 +8322,7 @@ textarea.form-control-lg {
   .text-sm-center {
     text-align: center !important;
   }
-}
+
 @media (min-width: 768px) {
   /* .float-md-start {
     float: left !important;
@@ -10978,16 +10985,9 @@ textarea.form-control-lg {
     display: none ;
   }
 }
-.bg-image-full {
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center;
-  background-size: cover;
-}
 
 /* 여기서부터 태그리스트 */
 .taglist {
-  
   height: 38px;
   background-color: white;
   border-top: 1px solid black;
@@ -11000,4 +11000,60 @@ textarea.form-control-lg {
   flex-direction: row;
   background-color: blue;
   height: 18px;
+}
+
+
+
+.bg-image-full {
+  background-image: url(winetitleimg.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  height: 450px;
+}
+
+/* .btn-all {
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.btn-edit {
+  /* width: 90vw; */
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+
+.btn {
+  display: inline-block;
+  width: 15%;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: transparent;
+  /* border: 1px solid transparent; */
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  /* border-radius: 0.25rem; */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-right: 1px solid black;
+}
+
+.btn:last-child {
+  border-right: none;
+}
+
+.blank-btn {
+  width: 50px;
 }

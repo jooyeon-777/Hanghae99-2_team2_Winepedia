@@ -47,7 +47,6 @@ input:active {
 
 button {
 	border: none;
-	border-radius: 2px;
 	cursor: pointer;
 }
 
@@ -60,7 +59,7 @@ textarea {
 
 /* navbar */
 
-a {
+.navbar-item a {
     font-size: 18px;
     line-height: 20px;
     text-decoration: none;
