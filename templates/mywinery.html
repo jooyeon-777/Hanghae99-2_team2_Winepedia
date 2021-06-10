@@ -15,7 +15,250 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
 
 
+    <script>
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 500) {
+                    $('#MOVE_TOP_BTN').fadeIn();
+                } else {
+                    $('#MOVE_TOP_BTN').fadeOut();
+                }
+            });
 
+            $("#MOVE_TOP_BTN").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+
+        {#페이지로드시 실행#}
+        $(document).ready(function () {
+            showfavWine();
+        });
+        {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
+
+
+        function showfavWine() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/favlist',
+                data: {},
+                success: function (response) {
+                    let wineList = response['wine_list']
+                    let like = response['likelist']
+                    for (let i = 0; i < wineList.length; i++) {
+                        let likes = like[i]
+                        let wine_name = wineList[i]['wine_name']
+                        let wine_type = wineList[i]['wine_type']
+                        let wine_country = wineList[i]['wine_country']
+                        let wine_price = wineList[i]['wine_price']
+                        let wine_img = 'static/img/' + wine_name + '.jpg'
+                        let wine_num = wineList[i]['wine_num']
+                        let wine_like = wineList[i]['wine_like']
+                        let temp_html = `<div class="col-12 col-md-3 ${wine_type} ${wine_country} ${likes}">
+                                                <div class="program-card" style="width: 15rem">
+                                                    <div class="card-desc">
+                                                        <h4 class="wine-title">${wine_name}<p> (좋아요: ${wine_like})</h4>
+                                                        <img src="${wine_img}"
+                                                            alt="Card image cap">
+                                                        <span class="card-text">${wine_type}</span>
+                                                        <span class="card-text">${wine_country}</span>
+                                                        <span class="card-text">${wine_price}</span>
+                                                        <a onclick="likeWine('${wine_name}','${wine_num}')" class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                                                        <a aria-label="heart" onclick="toggle_like('', 'heart')">
+                                                            <span class="icon is-small"><i class="fa fa-heart" aria-hidden="true"></i></span>&nbsp;<span class="like-num">2.7k</span>
+                                                        </a>
+
+
+
+                                                        </div>
+                                                </div>
+                                            </div>`
+                        if (likes == true){
+                            $('.row').append(temp_html)
+                        }
+
+
+
+                    }
+                }
+            });
+        }
+
+        function likeWine(wine_name, wine_num) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/like',
+                data: {name_give: wine_name, num_give: wine_num},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+
+        function spark() {
+            $('.Sparkling').show()
+            $('.Red').hide()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function redwine() {
+            $('.Sparkling').hide()
+            $('.Red').show()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function whitewine() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.White').show()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function sweet() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.Sweet').show()
+            $('.White').hide()
+            $('.Rose').hide()
+            $('.Champagne').hide()
+        }
+
+        function rose() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.Rose').show()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Champagne').hide()
+        }
+
+        function cham() {
+            $('.Sparkling').hide()
+            $('.Red').hide()
+            $('.White').hide()
+            $('.Sweet').hide()
+            $('.Rose').hide()
+            $('.Champagne').show()
+        }
+
+        function france() {
+            $('.프랑스').show()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function italy() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').show()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function us() {
+            $('.프랑스').hide()
+            $('.미국').show()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function nz() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').show()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function german() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').show()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function seven() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').show()
+            $('.호주').hide()
+            $('.스페인').hide()
+        }
+
+        function au() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').show()
+            $('.스페인').hide()
+        }
+
+        function spain() {
+            $('.프랑스').hide()
+            $('.미국').hide()
+            $('.이탈리아').hide()
+            $('.뉴질랜드').hide()
+            $('.독일').hide()
+            $('.칠레').hide()
+            $('.호주').hide()
+            $('.스페인').show()
+        }
+
+        function showall() {
+            $('.프랑스').show()
+            $('.미국').show()
+            $('.이탈리아').show()
+            $('.뉴질랜드').show()
+            $('.독일').show()
+            $('.칠레').show()
+            $('.호주').show()
+            $('.스페인').show()
+            $('.Sparkling').show()
+            $('.Red').show()
+            $('.White').show()
+            $('.Sweet').show()
+            $('.Rose').show()
+            $('.Champagne').show()
+        }
+    </script>
 </head>
 <body>
 
