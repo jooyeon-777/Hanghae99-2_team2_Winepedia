@@ -305,12 +305,12 @@ def like_wine():
         db.users.update_one({'username': userinfo}, {'$set': {num_receive: t}})  # db를 좋아요한상태로 업데이트함
         new_like = current_like + 1  # like수를 한개올려준뒤
         db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})  # like 개수를 업데이트
-        return jsonify({'msg': num_receive + name_receive + '좋아요완료!'})
+        return jsonify({'msg':'좋아요완료!'})
     else:  # 만약 좋아요가 눌린상태라면
         db.users.update_one({'username': userinfo}, {'$set': {num_receive: f}})  # db를 좋아요안한상태로 업데이트함
         new_like = current_like - 1  # like수를 한개내려준뒤
         db.winelist1.update_one({'wine_name': name_receive}, {'$set': {'wine_like': new_like}})  # like 개수를 업데이트
-        return jsonify({'msg': num_receive + name_receive + '좋아요가 취소되었습니다.'})
+        return jsonify({'msg':'좋아요가 취소되었습니다.'})
 
 
 if __name__ == '__main__':
