@@ -7,7 +7,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <script>
+            function chkstatus() {
+            $.ajax({
+                type: "GET",
+                url: "/api/session",
+                data: {},
+                success: function (response) {
+                    if (response['result'] != 'fail') {
+                        alert('잘못된 접근입니다')
+                        window.location.href = '/'
+
+                    }
+                }
+            })
+        }
+
     $(document).ready(function () {
+        chkstatus()
         logout()
     });
 

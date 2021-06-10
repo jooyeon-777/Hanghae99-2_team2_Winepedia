@@ -54,10 +54,24 @@
 
         {#페이지로드시 실행#}
         $(document).ready(function () {
+            chkstatus()
             showfavWine();
         });
         {#세션체크후 로그인이나 로그인 한개만 보이게하기#}
+        function chkstatus() {
+            $.ajax({
+                type: "GET",
+                url: "/api/session",
+                data: {},
+                success: function (response) {
+                    if (response['result'] != 'success') {
+                        alert('잘못된 접근입니다')
+                        window.location.href = '/'
 
+                    }
+                }
+            })
+        }
 
         function showfavWine() {
             $.ajax({

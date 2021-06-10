@@ -179,7 +179,7 @@ def show_favWines():
     # testarr = []
     # for i in range(0,50):
     #     userarr.append('db.users.find_one({\'username\': userinfo}, {\'_id\': False, '+str(i)+': True})['+str(i)+']')
-
+#eval로 문자열을 실행시키려했으나 몽고db가 에러를 뱉는다
         # testarr.append(['user{}'.format(i)])
 
 
