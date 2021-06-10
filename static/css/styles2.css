@@ -11013,6 +11013,14 @@ textarea.form-control-lg {
   height: 450px;
 }
 
+.bg-image-full2  {
+  background-image: url(mywinery.png);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  height: 450px;
+}
 /* .btn-all {
   margin-left: auto;
   margin-right: auto;
